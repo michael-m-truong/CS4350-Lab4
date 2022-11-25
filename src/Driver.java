@@ -8,11 +8,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Scanner;
+
+import javax.print.attribute.standard.Destination;
 
 public class Driver {
 
@@ -53,11 +56,11 @@ public class Driver {
             String pass = "123";
             conn = DriverManager.getConnection(dbURL, user, pass);
             if (conn != null) {
-                displayAllSchedules();
-                displayStops();
+                //displayAllSchedules();
+                //displayStops();
                 displayWeeklySchedule();
                 //insertTripOffering();
-                /** Put menu i n here */
+                /** Put menu in here */
                 
                 // String sql = "SELECT * FROM [SchoolDB].[dbo].[Student]";
                 // String test = null;
@@ -98,6 +101,12 @@ public class Driver {
         System.out.print("Enter StartLocationName: ");
         user_StartLocationName = input.nextLine();
         user_StartLocationName = user_StartLocationName.equals("") ? null : user_StartLocationName;  // if empty string, then make null
+        System.out.print("Enter DestinationName: ");
+        user_DestinationName = input.nextLine();
+        user_DestinationName = user_DestinationName.equals("") ? null : user_DestinationName;  // if empty string, then make null
+        System.out.print("Enter Date: ");
+        user_Date = input.nextLine();
+        user_Date = user_Date.equals("") ? null : user_Date;  // if empty string, then make null
         //System.out.println("Input: " + user_StartLocationName);
         /*String sql_DisplayAllSchedules = """
             SELECT Date, ScheduledStartTime, ScheduledArrivalTime, DriverName, BusID
@@ -144,6 +153,15 @@ public class Driver {
         String user_TripNumber = "";
         String user_Date = "";
         String user_ScheduledStartTime = "";
+        System.out.print("Enter TripNumber: ");
+        user_TripNumber = input.nextLine();
+        user_TripNumber = user_TripNumber.equals("") ? null : user_TripNumber;  // if empty string, then make null
+        System.out.print("Enter Date: ");
+        user_Date = input.nextLine();
+        user_Date = user_Date.equals("") ? null : user_Date;  // if empty string, then make null
+        System.out.print("Enter StartLocationName: ");
+        user_ScheduledStartTime = input.nextLine();
+        user_ScheduledStartTime = user_ScheduledStartTime.equals("") ? null : user_ScheduledStartTime;  // if empty string, then make null
         String sql_DeleteTripOffering = """
                 DELETE 
                 FROM TripOffering
@@ -164,6 +182,15 @@ public class Driver {
         }
     }
 
+    public static void insertTripOfferingMenu() {
+        String exit = "";
+        while (!exit.equals("no")) {
+            insertActualTripStopInfo();
+            System.out.print("Enter 'yes' to enter more trip offerings or 'no' to stop: ");
+            exit = input.nextLine();
+        }
+    }
+
     public static void insertTripOffering() {
         String user_TripNumber = "";
         String user_Date = "";
@@ -171,6 +198,24 @@ public class Driver {
         String user_ScheduledArrivalTime = "";
         String user_DriverName = "testing";
         String user_BusID = null;               //null in java is NULL in sql
+        System.out.print("Enter TripNumber: ");
+        user_TripNumber = input.nextLine();
+        user_TripNumber = user_TripNumber.equals("") ? null : user_TripNumber;  // if empty string, then make null
+        System.out.print("Enter Date: ");
+        user_Date = input.nextLine();
+        user_Date = user_Date.equals("") ? null : user_Date;  // if empty string, then make null
+        System.out.print("Enter ScheduledStartTime: ");
+        user_ScheduledStartTime = input.nextLine();
+        user_ScheduledStartTime = user_ScheduledStartTime.equals("") ? null : user_ScheduledStartTime;  // if empty string, then make null
+        System.out.print("Enter ScheduledArrivalTime: ");
+        user_ScheduledArrivalTime = input.nextLine();
+        user_ScheduledArrivalTime = user_ScheduledArrivalTime.equals("") ? null : user_ScheduledArrivalTime;  // if empty string, then make null
+        System.out.print("Enter DriverName: ");
+        user_DriverName = input.nextLine();
+        user_DriverName = user_DriverName.equals("") ? null : user_DriverName;  // if empty string, then make null
+        System.out.print("Enter BusID: ");
+        user_BusID = input.nextLine();
+        user_BusID = user_BusID.equals("") ? null : user_BusID;  // if empty string, then make null
         String sql_InsertTripOffering = """
                 INSERT 
                 INTO TripOffering
@@ -198,6 +243,15 @@ public class Driver {
         String user_TripNumber = "";
         String user_Date = "";
         String user_ScheduledStartTime = "";
+        System.out.print("Enter TripNumber: ");
+        user_TripNumber = input.nextLine();
+        user_TripNumber = user_TripNumber.equals("") ? null : user_TripNumber;  // if empty string, then make null
+        System.out.print("Enter Date: ");
+        user_Date = input.nextLine();
+        user_Date = user_Date.equals("") ? null : user_Date;  // if empty string, then make null
+        System.out.print("Enter ScheduledStartTime: ");
+        user_ScheduledStartTime = input.nextLine();
+        user_ScheduledStartTime = user_ScheduledStartTime.equals("") ? null : user_ScheduledStartTime;  // if empty string, then make null
         String sql_DeleteTripOffering = """
                 UPDATE TripOffering 
                 SET DriverName = ?
@@ -219,9 +273,22 @@ public class Driver {
     }
 
     public static void changeBus() {
+        String user_BusID = "";
         String user_TripNumber = "";
         String user_Date = "";
         String user_ScheduledStartTime = "";
+        System.out.print("Enter BusID: ");
+        user_BusID = input.nextLine();
+        user_BusID = user_BusID.equals("") ? null : user_BusID;  // if empty string, then make null
+        System.out.print("Enter TripNumber: ");
+        user_TripNumber = input.nextLine();
+        user_TripNumber = user_TripNumber.equals("") ? null : user_TripNumber;  // if empty string, then make null
+        System.out.print("Enter Date: ");
+        user_Date = input.nextLine();
+        user_Date = user_Date.equals("") ? null : user_Date;  // if empty string, then make null
+        System.out.print("Enter ScheduledStartTime: ");
+        user_ScheduledStartTime = input.nextLine();
+        user_ScheduledStartTime = user_ScheduledStartTime.equals("") ? null : user_ScheduledStartTime;  // if empty string, then make null
         String sql_DeleteTripOffering = """
                 UPDATE TripOffering 
                 SET BusID = ?
@@ -229,9 +296,10 @@ public class Driver {
                 """;
         try {
             PreparedStatement statement = conn.prepareStatement(sql_DeleteTripOffering);
-            statement.setString(1, user_TripNumber);
-            statement.setString(2, user_Date);
-            statement.setString(3, user_ScheduledStartTime);
+            statement.setString(1, user_BusID);
+            statement.setString(2, user_TripNumber);
+            statement.setString(3, user_Date);
+            statement.setString(4, user_ScheduledStartTime);
 
             statement.executeUpdate();
             System.out.println("Query sucessfully executed");
@@ -244,6 +312,9 @@ public class Driver {
 
     public static void displayStops() {
         String user_TripNumber = "1";
+        System.out.print("Enter TripNumber: ");
+        user_TripNumber = input.nextLine();
+        user_TripNumber = user_TripNumber.equals("") ? null : user_TripNumber;  // if empty string, then make null
         String sql_DisplayStops = """
                 SELECT * 
                 FROM TripStopInfo
@@ -268,10 +339,34 @@ public class Driver {
     }
     
 
-    public static void displayWeeklySchedule() {
+    public static void displayWeeklySchedule() throws ParseException {
         String user_DriverName = "Nhi";
         String user_StartDate = "2022-01-01";
         String user_EndDate = "2022-01-07";
+        System.out.print("Enter DriverName: ");
+        user_DriverName = input.nextLine();
+        user_DriverName = user_DriverName.equals("") ? null : user_DriverName;  // if empty string, then make null
+        System.out.print("Enter Date: ");
+        user_StartDate = input.nextLine();
+        user_StartDate = user_StartDate.equals("") ? null : user_StartDate;  // if empty string, then make null
+        
+        user_StartDate = user_StartDate.replaceAll("-", "");
+        Date currDate = new SimpleDateFormat("yyyyMMdd", Locale.ENGLISH).parse(user_StartDate);
+        Calendar c = Calendar.getInstance();
+        c.setTime(currDate);
+     // Set the calendar to Sunday of the current week
+        c.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+        System.out.println();
+     // Print dates of the current week starting on Sunday
+        DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+        user_StartDate = df.format(c.getTime());
+        System.out.println(user_StartDate);
+        for (int i = 0; i <6; i++) {
+            c.add(Calendar.DATE, 1);
+        }
+        user_EndDate = df.format(c.getTime());
+        System.out.println("Weekly schedule for " + user_StartDate + " - " + user_EndDate + "\n");
+
         String sql_DisplayWeeklySchedule = """
             SELECT t1.StartLocationName, t1.DestinationName, t2.Date, t2.ScheduledStartTime, t2.ScheduledArrivalTime, t2.DriverName, t2.BusID
                 FROM (
@@ -305,6 +400,12 @@ public class Driver {
     public static void insertDriver() {
         String user_DriverName = "";
         String user_DriverTelephoneNumber = "";
+        System.out.print("Enter DriverName: ");
+        user_DriverName = input.nextLine();
+        user_DriverName = user_DriverName.equals("") ? null : user_DriverName;  // if empty string, then make null
+        System.out.print("Enter DriverTelephoneNumber: ");
+        user_DriverTelephoneNumber = input.nextLine();
+        user_DriverTelephoneNumber = user_DriverTelephoneNumber.equals("") ? null : user_DriverTelephoneNumber;  // if empty string, then make null
         String sql_InsertDriver = """
                 INSERT 
                 INTO Driver
@@ -328,6 +429,15 @@ public class Driver {
         String user_BusID = "";
         String user_Model = "";
         String user_Year = "";
+        System.out.print("Enter BusID: ");
+        user_BusID = input.nextLine();
+        user_BusID = user_BusID.equals("") ? null : user_BusID;  // if empty string, then make null
+        System.out.print("Enter Model: ");
+        user_Model = input.nextLine();
+        user_Model = user_Model.equals("") ? null : user_Model;  // if empty string, then make null
+        System.out.print("Enter Year: ");
+        user_Year = input.nextLine();
+        user_Year = user_Year.equals("") ? null : user_Year;  // if empty string, then make null
         String sql_InsertBus = """
                 INSERT 
                 INTO Bus
@@ -350,13 +460,16 @@ public class Driver {
 
     public static void deleteBus() {
         String user_BusID = "";
-        String sql_InsertBus = """
+        System.out.print("Enter BusID: ");
+        user_BusID = input.nextLine();
+        user_BusID = user_BusID.equals("") ? null : user_BusID;  // if empty string, then make null
+        String sql_DeleteBus = """
                 DELETE 
                 FROM Bus
                 WHERE BusID = ?
                 """;
         try {
-            PreparedStatement statement = conn.prepareStatement(sql_InsertBus);
+            PreparedStatement statement = conn.prepareStatement(sql_DeleteBus);
             statement.setString(1, user_BusID);
 
             statement.executeUpdate();
@@ -378,13 +491,40 @@ public class Driver {
         String user_ActualArrivalTime = "";
         String user_NumberOfPassengerIn = "";
         String user_NumberofPassengerOut = "";
-        String sql_InsertBus = """
+        System.out.print("Enter TripNumber: ");
+        user_TripNumber = input.nextLine();
+        user_TripNumber = user_TripNumber.equals("") ? null : user_TripNumber;  // if empty string, then make null
+        System.out.print("Enter Date: ");
+        user_Date = input.nextLine();
+        user_Date = user_Date.equals("") ? null : user_Date;  // if empty string, then make null
+        System.out.print("Enter ScheduledStartTime: ");
+        user_ScheduledStartTime = input.nextLine();
+        user_ScheduledStartTime = user_ScheduledStartTime.equals("") ? null : user_ScheduledStartTime;  // if empty string, then make null
+        System.out.print("Enter StopNumber: ");
+        user_StopNumber = input.nextLine();
+        user_StopNumber = user_StopNumber.equals("") ? null : user_StopNumber;  // if empty string, then make null
+        System.out.print("Enter ScheduledArrivalTime: ");
+        user_ScheduledArrivalTime = input.nextLine();
+        user_ScheduledArrivalTime = user_ScheduledArrivalTime.equals("") ? null : user_ScheduledArrivalTime;  // if empty string, then make null
+        System.out.print("Enter ActualStartTime: ");
+        user_ActualStartTime = input.nextLine();
+        user_ActualStartTime = user_ActualStartTime.equals("") ? null : user_ActualStartTime;  // if empty string, then make null
+        System.out.print("Enter ActualArrivalTime: ");
+        user_ActualArrivalTime = input.nextLine();
+        user_ActualArrivalTime = user_ActualArrivalTime.equals("") ? null : user_ActualArrivalTime;  // if empty string, then make null
+        System.out.print("Enter NumberOfPassengerIn: ");
+        user_NumberOfPassengerIn = input.nextLine();
+        user_NumberOfPassengerIn = user_NumberOfPassengerIn.equals("") ? null : user_NumberOfPassengerIn;  // if empty string, then make null
+        System.out.print("Enter NumberOfPassengerOut: ");
+        user_NumberofPassengerOut = input.nextLine();
+        user_NumberofPassengerOut = user_NumberofPassengerOut.equals("") ? null : user_NumberofPassengerOut;  // if empty string, then make null
+        String sql_InsertActualTripStopInfo = """
                 INSERT
                 INTO ActualTripStopInfo 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """;
         try {
-            PreparedStatement statement = conn.prepareStatement(sql_InsertBus);
+            PreparedStatement statement = conn.prepareStatement(sql_InsertActualTripStopInfo);
             statement.setString(1, user_TripNumber);
             statement.setString(2, user_Date);
             statement.setString(3, user_ScheduledStartTime);
