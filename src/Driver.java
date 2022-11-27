@@ -61,12 +61,12 @@ public class Driver {
                 //displayWeeklySchedule();  //verified
                 //insertTripOfferingMenu();    //verified
                 //deleteTripOffering();         //verified
-                //changeBus()
-                //insertActualTripStopInfo()
-                //changeDriver()
-                //insertDriver()
-                //insertBus()
-                //deleteBus()
+                //changeBus();                    //verified
+                //insertActualTripStopInfo();      //verified
+                //changeDriver();                  //verified
+                //insertDriver();                 //verified
+                //insertBus();            //verified
+                //deleteBus();          //verified
                 /** Put menu in here */
                 
                 // String sql = "SELECT * FROM [SchoolDB].[dbo].[Student]";
@@ -180,7 +180,7 @@ public class Driver {
             statement.setString(2, user_Date);
             statement.setString(3, user_ScheduledStartTime);
 
-            statement.executeUpdate();
+            System.out.println(statement.executeUpdate() + " rows affected");
             System.out.println("Query sucessfully executed");
             System.out.println();
         }
@@ -237,7 +237,7 @@ public class Driver {
             statement.setString(5, user_DriverName);
             statement.setString(6, user_BusID);
 
-            statement.executeUpdate();
+            System.out.println(statement.executeUpdate() + " rows affected");
             System.out.println("Query sucessfully executed");
             System.out.println();
         }
@@ -247,9 +247,13 @@ public class Driver {
     }
 
     public static void changeDriver() {
+        String user_DriverName = "";
         String user_TripNumber = "";
         String user_Date = "";
         String user_ScheduledStartTime = "";
+        System.out.print("Enter DriverName: ");
+        user_DriverName = input.nextLine();
+        user_DriverName = user_DriverName.equals("") ? null : user_DriverName;  // if empty string, then make null
         System.out.print("Enter TripNumber: ");
         user_TripNumber = input.nextLine();
         user_TripNumber = user_TripNumber.equals("") ? null : user_TripNumber;  // if empty string, then make null
@@ -266,11 +270,12 @@ public class Driver {
                 """;
         try {
             PreparedStatement statement = conn.prepareStatement(sql_DeleteTripOffering);
-            statement.setString(1, user_TripNumber);
-            statement.setString(2, user_Date);
-            statement.setString(3, user_ScheduledStartTime);
+            statement.setString(1, user_DriverName);
+            statement.setString(2, user_TripNumber);
+            statement.setString(3, user_Date);
+            statement.setString(4, user_ScheduledStartTime);
 
-            statement.executeUpdate();
+            System.out.println(statement.executeUpdate() + " rows affected");
             System.out.println("Query sucessfully executed");
             System.out.println();
         }
@@ -308,7 +313,7 @@ public class Driver {
             statement.setString(3, user_Date);
             statement.setString(4, user_ScheduledStartTime);
 
-            statement.executeUpdate();
+            System.out.println(statement.executeUpdate() + " rows affected");
             System.out.println("Query sucessfully executed");
             System.out.println();
         }
@@ -423,7 +428,7 @@ public class Driver {
             statement.setString(1, user_DriverName);
             statement.setString(2, user_DriverTelephoneNumber);
 
-            statement.executeUpdate();
+            System.out.println(statement.executeUpdate() + " rows affected");
             System.out.println("Query sucessfully executed");
             System.out.println();
         }
@@ -456,7 +461,7 @@ public class Driver {
             statement.setString(2, user_Model);
             statement.setString(3, user_Year);
 
-            statement.executeUpdate();
+            System.out.println(statement.executeUpdate() + " rows affected");
             System.out.println("Query sucessfully executed");
             System.out.println();
         }
@@ -479,7 +484,7 @@ public class Driver {
             PreparedStatement statement = conn.prepareStatement(sql_DeleteBus);
             statement.setString(1, user_BusID);
 
-            statement.executeUpdate();
+            System.out.println(statement.executeUpdate() + " rows affected");
             System.out.println("Query sucessfully executed");
             System.out.println();
         }
@@ -542,7 +547,7 @@ public class Driver {
             statement.setString(8, user_NumberOfPassengerIn);
             statement.setString(9, user_NumberofPassengerOut);
 
-            statement.executeQuery();
+            System.out.println(statement.executeUpdate() + " rows affected");
             System.out.println("Query sucessfully executed");
             System.out.println();
         }
