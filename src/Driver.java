@@ -56,10 +56,17 @@ public class Driver {
             String pass = "123";
             conn = DriverManager.getConnection(dbURL, user, pass);
             if (conn != null) {
-                //displayAllSchedules();
-                //displayStops();
-                displayWeeklySchedule();
-                //insertTripOffering();
+                //displayAllSchedules();    //verified
+                //displayStops();           //verified
+                //displayWeeklySchedule();  //verified
+                //insertTripOfferingMenu();    //verified
+                //deleteTripOffering();         //verified
+                //changeBus()
+                //insertActualTripStopInfo()
+                //changeDriver()
+                //insertDriver()
+                //insertBus()
+                //deleteBus()
                 /** Put menu in here */
                 
                 // String sql = "SELECT * FROM [SchoolDB].[dbo].[Student]";
@@ -159,7 +166,7 @@ public class Driver {
         System.out.print("Enter Date: ");
         user_Date = input.nextLine();
         user_Date = user_Date.equals("") ? null : user_Date;  // if empty string, then make null
-        System.out.print("Enter StartLocationName: ");
+        System.out.print("Enter ScheduledStartTime: ");
         user_ScheduledStartTime = input.nextLine();
         user_ScheduledStartTime = user_ScheduledStartTime.equals("") ? null : user_ScheduledStartTime;  // if empty string, then make null
         String sql_DeleteTripOffering = """
@@ -185,7 +192,7 @@ public class Driver {
     public static void insertTripOfferingMenu() {
         String exit = "";
         while (!exit.equals("no")) {
-            insertActualTripStopInfo();
+            insertTripOffering();
             System.out.print("Enter 'yes' to enter more trip offerings or 'no' to stop: ");
             exit = input.nextLine();
         }
