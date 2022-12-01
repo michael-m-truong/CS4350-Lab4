@@ -15,39 +15,12 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Scanner;
 
-import javax.print.attribute.standard.Destination;
 
 public class Driver {
 
     private static Connection conn = null;
     private static Scanner input = new Scanner(System.in);
     public static void main(String[] args) throws Exception {
-        /*Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
-        String str = formatter.format(date);
-        System.out.println(str);
-        //System.out.println("Hello, World!");
-        Calendar c = Calendar.getInstance(); */
-        //Date date = new Date();
-        /*String trDate="2022-11-23";  
-        trDate = trDate.replaceAll("-", "");
-        Date tradeDate = new SimpleDateFormat("yyyyMMdd", Locale.ENGLISH).parse(trDate);
-        Calendar c = Calendar.getInstance();
-        c.setTime(tradeDate);
-     // Set the calendar to Sunday of the current week
-        c.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
-
-        System.out.println();
-     // Print dates of the current week starting on Sunday
-       DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
-       String startDate = df.format(c.getTime());
-       System.out.println(startDate);
-        for (int i = 0; i <6; i++) {
-         c.add(Calendar.DATE, 1);
-           }
-        String endDate = df.format(c.getTime());
-        System.out.println(endDate);
-		System.out.println(); */
 
         try {
  
@@ -107,27 +80,10 @@ public class Driver {
                         case "11":
                             insertActualTripStopInfo();
                             break;
-                        // default:
-                        //     System.out.println("Invalid option\n");
                     }
 
                 }
-                //displayAllSchedules();    //verified
-                //displayStops();           //verified
-                //displayWeeklySchedule();  //verified
-                //insertTripOfferingMenu();    //verified
-                //deleteTripOffering();         //verified
-                //changeBus();                    //verified
-                //insertActualTripStopInfo();      //verified
-                //changeDriver();                  //verified
-                //insertDriver();                 //verified
-                //insertBus();            //verified
-                //deleteBus();          //verified
-                /** Put menu in here */
-                
-                
-               
-
+                                
             }
  
         } catch (SQLException ex) {
@@ -160,18 +116,7 @@ public class Driver {
         System.out.print("Enter Date: ");
         user_Date = input.nextLine();
         user_Date = user_Date.equals("") ? null : user_Date;  // if empty string, then make null
-        //System.out.println("Input: " + user_StartLocationName);
-        /*String sql_DisplayAllSchedules = """
-            SELECT Date, ScheduledStartTime, ScheduledArrivalTime, DriverName, BusID
-                FROM TripOffering
-                WHERE TripNumber IN
-                    (
-                        SELECT TripNumber
-                        FROM Trip
-                        WHERE StartLocationName = ? AND DestinationName = ?
-                    )
-                AND Date = ?
-        """; */
+
         String test2 = """
             SELECT t1.StartLocationName, t1.DestinationName, t2.Date, t2.ScheduledStartTime, t2.ScheduledArrivalTime, t2.DriverName, t2.BusID
                 FROM (
