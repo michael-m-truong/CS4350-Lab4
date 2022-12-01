@@ -29,7 +29,7 @@ public class Driver {
         //System.out.println("Hello, World!");
         Calendar c = Calendar.getInstance(); */
         //Date date = new Date();
-        String trDate="2022-11-23";  
+        /*String trDate="2022-11-23";  
         trDate = trDate.replaceAll("-", "");
         Date tradeDate = new SimpleDateFormat("yyyyMMdd", Locale.ENGLISH).parse(trDate);
         Calendar c = Calendar.getInstance();
@@ -47,7 +47,7 @@ public class Driver {
            }
         String endDate = df.format(c.getTime());
         System.out.println(endDate);
-		System.out.println();
+		System.out.println(); */
 
         try {
  
@@ -55,7 +55,63 @@ public class Driver {
             String user = "mmt";
             String pass = "123";
             conn = DriverManager.getConnection(dbURL, user, pass);
+            String menuLoop = "";
+            String userSelection = "";
             if (conn != null) {
+                while (menuLoop != "no") {
+                    System.out.println("Select an option");
+                    System.out.println("1. Display all schedule of all trips");
+                    System.out.println("2. Delete a trip offering");
+                    System.out.println("3. Add a set of trip offerings");
+                    System.out.println("4. Change the driver for a given trip offering");
+                    System.out.println("5. Change the bus for a given trip offering");
+                    System.out.println("6. Display the stops of a given trip");
+                    System.out.println("7. Display a weekly schedule");
+                    System.out.println("8. Add a driver");
+                    System.out.println("9. Add a bus");
+                    System.out.println("10. Delete a bus");
+                    System.out.println("11. Insert the actual data of a given trip offering");
+                    System.out.print("\nUser selection: ");
+                    userSelection = input.nextLine();
+                    switch (userSelection) {
+                        case "1":
+                            displayAllSchedules();
+                            break;
+                        case "2":
+                            deleteTripOffering();
+                            break;
+                        case "3":
+                            insertTripOfferingMenu();
+                            break;
+                        case "4":
+                            changeDriver();
+                            break;
+                        case "5":
+                            changeBus();
+                            break;
+                        case "6":
+                            displayStops();
+                            break;
+                        case "7":
+                            displayWeeklySchedule();
+                            break;
+                        case "8":
+                            insertDriver();
+                            break;
+                        case "9":
+                            insertBus();
+                            break;
+                        case "10":
+                            deleteBus();
+                            break;
+                        case "11":
+                            insertActualTripStopInfo();
+                            break;
+                        default:
+                            System.out.println("Invalid option\n");
+                    }
+
+                }
                 //displayAllSchedules();    //verified
                 //displayStops();           //verified
                 //displayWeeklySchedule();  //verified
@@ -69,17 +125,7 @@ public class Driver {
                 //deleteBus();          //verified
                 /** Put menu in here */
                 
-                // String sql = "SELECT * FROM [SchoolDB].[dbo].[Student]";
-                // String test = null;
-                // String sqlTest = "INSERT INTO bday values ('2012-2-22')";
-                // PreparedStatement statement = conn.prepareStatement(sql);
-                // statement.setString(1, test);
-            
-                // ResultSet result = statement.executeQuery();
-                // System.out.printf("%-20s %-20s %-20s\n", "SSN", "Name", "Major");
-                // while (result.next()) {
-                //     System.out.printf("%-20s %-20s %-20s\n", result.getString("SSN"), result.getString("Name"), result.getString("Major"));
-                // }
+                
                
 
             }
