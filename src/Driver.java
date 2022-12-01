@@ -58,7 +58,7 @@ public class Driver {
             String menuLoop = "";
             String userSelection = "";
             if (conn != null) {
-                while (menuLoop != "no") {
+                while (!userSelection.equals("no")) {
                     System.out.println("Select an option");
                     System.out.println("1. Display all schedule of all trips");
                     System.out.println("2. Delete a trip offering");
@@ -71,7 +71,7 @@ public class Driver {
                     System.out.println("9. Add a bus");
                     System.out.println("10. Delete a bus");
                     System.out.println("11. Insert the actual data of a given trip offering");
-                    System.out.print("\nUser selection: ");
+                    System.out.print("\nUser selection (type 'no' to end program): ");
                     userSelection = input.nextLine();
                     switch (userSelection) {
                         case "1":
@@ -107,8 +107,8 @@ public class Driver {
                         case "11":
                             insertActualTripStopInfo();
                             break;
-                        default:
-                            System.out.println("Invalid option\n");
+                        // default:
+                        //     System.out.println("Invalid option\n");
                     }
 
                 }
